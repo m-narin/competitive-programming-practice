@@ -23,25 +23,31 @@ ti=3のとき、上からxi番目のカードを出力
 #include <bits/stdc++.h>
 using namespace std;
 
+// dequeを使うと便利
+// 動的配列クラスで、両端の要素追加削除をO(1)でできる
 int main() {
 
     int Q;
     cin >> Q;
 
-    vector<int> v;
+    deque<int> deq;
 
     for (int i = 0; i < Q; i++){
         int t, x;
         cin >> t >> x;
 
         if(t == 1){
-            // イテレータを使って先頭に追加
-            auto it = v.begin();
-            v.insert(it,x); 
+            deq.push_front(x);
         }else if(t == 2){
-            v.push_back(x);
+            deq.push_back(x);
         }else{
-            cout << v[x-1] << endl;
+            cout << deq[x-1] << endl;
         }
+
+        // 要素の削除は以下のように書く
+        /*
+            deq.pop_front();
+            deq.pop_back();
+        */
     }
 }
