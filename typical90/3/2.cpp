@@ -69,6 +69,6 @@ int main() {
         bool I = hantei(Candidate);
         if(I){
             cout << Candidate << endl;
-        }
+        }　
     }
 }
