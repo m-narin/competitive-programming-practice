@@ -17,8 +17,6 @@ using namespace std;
 
 // ソートして貪欲法
 
-const int INF = 2000000000;
-
 int main() {
 
     int N;
