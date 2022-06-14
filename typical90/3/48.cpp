@@ -21,7 +21,6 @@ using namespace std;
 
 // 上界を見積もって貪欲法
 // 各手段を降順でソートして、降順に要素を足したものが上界値
-// 
 
 int main() {
     int n, k;
