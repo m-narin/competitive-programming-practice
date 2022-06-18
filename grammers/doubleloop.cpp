@@ -26,11 +26,11 @@ for (int i = 0; i < 10 ; i++) {
         sum += i * j;
 
         if (sum > 1000) {
-        cout << i << ", " << j << endl;
-        finished = true;
+            cout << i << ", " << j << endl;
+            finished = true;
 
-        // 内側のloopを抜ける
-        break;
+            // 内側のloopを抜ける
+            break;
         }
     }
 

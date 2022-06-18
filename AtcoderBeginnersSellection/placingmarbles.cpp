@@ -23,5 +23,5 @@ int main() {
         }
     }
 
-    cout << count;
+    cout << count << endl;
 }
