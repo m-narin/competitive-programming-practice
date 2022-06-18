@@ -46,7 +46,6 @@ int main() {
 
     int Answer = 0;
     vector<long long> vec = prime_factors(N);
-
     // (1 << i)は1をibit左シフトしたもの
     // つまり、2^i乗の数字を表す
     // (1 << 2) = 2^2 = 4 
