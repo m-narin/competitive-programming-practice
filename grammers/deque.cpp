@@ -51,7 +51,7 @@ int main() {
         */
     }
 
-    for(int i==1; i<Q; i++){
+    for(int i=1; i<Q; i++){
         
     }
 }
