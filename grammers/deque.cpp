@@ -50,4 +50,8 @@ int main() {
             deq.pop_back();
         */
     }
+
+    for(int i=1; i<Q; i++){
+        
+    }
 }
