@@ -32,7 +32,7 @@ int main() {
 
     deque<int> deq;
 
-    for (int i = 0; i < Q; i++){
+    for (int i = 0; i < Q; i+){
         int t, x;
         cin >> t >> x;
 
@@ -49,5 +49,9 @@ int main() {
             deq.pop_front();
             deq.pop_back();
         */
+    }
+
+    for(int i==1; i<Q; i++){
+        
     }
 }
