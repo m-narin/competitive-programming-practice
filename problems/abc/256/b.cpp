@@ -43,11 +43,10 @@ int main() {
         // マス上の全ての駒をAiだけ進める
         for (int j = 3; j >= 0; j--){
             if(masu[j] == 1){
+                masu[j] = 0;
                 if(j + A[i] >= 4){
                     P++;
-                    masu[j] = 0;
                 }else{
-                    masu[j] = 0;
                     masu[j + A[i]] = 1;
                 }
             }
