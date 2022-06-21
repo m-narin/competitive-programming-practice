@@ -32,7 +32,7 @@ int main() {
 
     deque<int> deq;
 
-    for (int i = 0; i < Q; i+){
+    for (int i = 0; i < Q; i++){
         int t, x;
         cin >> t >> x;
 
