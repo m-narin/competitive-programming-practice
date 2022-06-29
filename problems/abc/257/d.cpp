@@ -10,8 +10,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int N, ans = 0;
-int A[10009];
+int N, ans;
+int A[100009];
 
 int main() {
 

@@ -38,24 +38,12 @@ int main() {
     for (int i = 1; i <= Q; i++){
 
         // 一番右にあるときは何も行わない
-        if(A[L[i]] == N){
-            continue;
+        if(A[L[i]] == N) continue;
         
-        // 一つ右のマスにコマがないとき、移動させる
-        }else{
-            int migi = A[L[i]]+1;
-            bool flag = false;
-            for(int j = 1; j <= K; j++){
-                if(migi == A[j]){
-                    flag = true;
-                    break;
-                }
-            }
+        // 一つ右のマスにコマがあるときは何も行わない
+        if(L[i] < K && A[L[i]]+1 == A[L[i]+1]) continue;
 
-            if(!flag){
-                A[L[i]]++;
-            }
-        }
+        A[L[i]]++;
     }
 
     for (int i = 1; i <= K; i++){

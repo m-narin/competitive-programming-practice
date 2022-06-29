@@ -10,8 +10,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int N, ans = 0;
-int A[10009];
+int N;
+int A[1 << 19];
 
 int main() {
 
@@ -21,6 +21,5 @@ int main() {
         cin >> A[i];
     }
 
-    cout << ans << endl;
     return 0;
 }
