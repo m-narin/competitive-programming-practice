@@ -45,7 +45,7 @@ string base10_to_base9(long long N){
     return res;
 }
 
-// 10進数を9進数(文字列)に変換する
+// 10進数を2進数(文字列)に変換する
 string base10_to_base2(long long N){
     if(N==0){
         return "0";
