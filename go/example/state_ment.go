@@ -1,9 +1,15 @@
 /* 
-あああ
-
-入力例
-
 出力例
+1
+2
+3
+4
+5
+1
+3
+1
+3
+5
 
 */
 
@@ -33,10 +39,37 @@ func main() {
 }
 
 func solve() {
-	array := []int{1, 3, 6, 9, 100, 101, 100}
-    target := 100
-	p := searchIntTargetInSortedSlice(array,target)
-	fmt.Println(p)
+
+	n := 5
+	arr := []int{1,2,3,4,5}
+
+	// ループ番号
+	for i := 0; i < n; i++{
+		fmt.Println(arr[i])
+	}
+
+	// スライスのループ
+	for _,v := range arr{
+
+		if v == 2{
+			continue
+		}else if v == 4{
+			break
+		}
+		fmt.Println(v)
+	}
+
+	// 回数未定のループ
+	// 無限ループに注意
+	for i := 0;;{
+		fmt.Println(arr[i])
+
+		i += 2;
+		if(i > 4){
+			break
+		}
+	}
+
 }
 
 // 1行をstringで読み込み
@@ -231,3 +264,32 @@ func searchIntTargetInSortedSlice(array []int, target int) int {
         }
     }
 }
+
+// ソートされたスライスから2分探索する ~O(log(n))
+// targetがあるとき: 最初のindexを返す
+// targetがないとき: -1を返す
+func searchStringTargetInSortedSlice(array []string, target string) int {
+
+    // 範囲start < endを探索する
+    arrayLen := len(array)
+    start := 0
+    end := arrayLen - 1
+    var index int
+    for {
+        if end < start {
+            return -1
+        }
+        index = (start + end) / 2
+
+        if array[index] == target {
+            return index
+        }
+
+        if array[index] < target {
+            start = index + 1
+        } else {
+            end = index - 1
+        }
+    }
+}
+

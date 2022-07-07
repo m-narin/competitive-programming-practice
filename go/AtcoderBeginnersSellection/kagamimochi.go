@@ -1,10 +1,17 @@
 /* 
-あああ
+N枚の円形の餅を、直径の大きい順に積み上げていく
+このとき真下の餅より直径は小さくなる
+最大で何段重ねの餅を作れるか
 
 入力例
+4
+10
+8
+8
+6
 
 出力例
-
+3
 */
 
 package main
@@ -33,7 +40,17 @@ func main() {
 }
 
 func solve() {
+	n := readInt()
+	mochi := make([]int, n)
 
+	for i := 0 ;i < n; i++{
+		mochi[i] = readInt()
+	}
+
+	mochi = uniqueIntSlice(mochi)
+
+	// fmt.Println(mochi)
+	fmt.Println(len(mochi))
 }
 
 // 1行をstringで読み込み
@@ -186,74 +203,3 @@ func uniqueIntSlice(target []int) (unique[]int){
 
 	return unique
 }
-
-func uniqueStringSlice(target []string) (unique[]string){
-
-	m := map[string]bool{}
-
-	for _,v := range target{
-		if !m[v]{
-			m[v] = true
-			unique = append(unique, v)
-		}
-	}
-
-	return unique
-}
-
-// ソートされたスライスから2分探索する ~O(log(n))
-// targetがあるとき: 最初のindexを返す
-// targetがないとき: -1を返す
-func searchIntTargetInSortedSlice(array []int, target int) int {
-
-    // 範囲start < endを探索する
-    arrayLen := len(array)
-    start := 0
-    end := arrayLen - 1
-    var index int
-    for {
-        if end < start {
-            return -1
-        }
-        index = (start + end) / 2
-
-        if array[index] == target {
-            return index
-        }
-
-        if array[index] < target {
-            start = index + 1
-        } else {
-            end = index - 1
-        }
-    }
-}
-
-// ソートされたスライスから2分探索する ~O(log(n))
-// targetがあるとき: 最初のindexを返す
-// targetがないとき: -1を返す
-func searchStringTargetInSortedSlice(array []string, target string) int {
-
-    // 範囲start < endを探索する
-    arrayLen := len(array)
-    start := 0
-    end := arrayLen - 1
-    var index int
-    for {
-        if end < start {
-            return -1
-        }
-        index = (start + end) / 2
-
-        if array[index] == target {
-            return index
-        }
-
-        if array[index] < target {
-            start = index + 1
-        } else {
-            end = index - 1
-        }
-    }
-}
-

@@ -1,9 +1,11 @@
-/* 
-あああ
-
-入力例
+/* 探索
+ソートしてから2分探索すれば計算量をO(logn)にできる
 
 出力例
+3 -1
+4 -1
+3 -1
+1 -1
 
 */
 
@@ -16,7 +18,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	// "sort"
+	"sort"
 )
 
 const (
@@ -33,10 +35,34 @@ func main() {
 }
 
 func solve() {
-	array := []int{1, 3, 6, 9, 100, 101, 100}
-    target := 100
-	p := searchIntTargetInSortedSlice(array,target)
-	fmt.Println(p)
+
+	// 文字列の中に特定の文字列が含まれるか検索
+	str := "go-stringsパッケージ-string.Index"
+	r := strings.Index(str,"str")
+	r2 := strings.Index(str,"wow")
+	fmt.Println(r, r2)
+
+	// 数字の中に特定の数字があるか検索
+	num := 54321
+	numStr := i2s(num)
+	fmt.Printf("%T %v \n",numStr,numStr)
+	t := strings.Index(numStr,"1")
+	t2 := strings.Index(numStr,"8")
+	fmt.Println(t, t2)
+
+	// intスライスの中に特定の要素が含まれるか検索
+	arrayInt := []int{50,99,50,1,4,5,70}
+	sort.Ints(arrayInt)
+	p := searchIntTargetInSortedSlice(arrayInt,50)
+	p2 := searchIntTargetInSortedSlice(arrayInt,100)
+	fmt.Println(p, p2)
+
+	// stringスライスの中に特定の要素が含まれるか検索
+	arrayStr := []string{"banana","apple","lemon","orange"}
+	sort.Strings(arrayStr)
+	q := searchStringTargetInSortedSlice(arrayStr,"banana")
+	q2 := searchStringTargetInSortedSlice(arrayStr,"grape")
+	fmt.Println(q, q2)
 }
 
 // 1行をstringで読み込み
@@ -208,6 +234,34 @@ func uniqueStringSlice(target []string) (unique[]string){
 // targetがあるとき: 最初のindexを返す
 // targetがないとき: -1を返す
 func searchIntTargetInSortedSlice(array []int, target int) int {
+
+    // 範囲start < endを探索する
+    arrayLen := len(array)
+    start := 0
+    end := arrayLen - 1
+    var index int
+    for {
+        if end < start {
+            return -1
+        }
+        index = (start + end) / 2
+
+        if array[index] == target {
+            return index
+        }
+
+        if array[index] < target {
+            start = index + 1
+        } else {
+            end = index - 1
+        }
+    }
+}
+
+// ソートされたスライスから2分探索する ~O(log(n))
+// targetがあるとき: 最初のindexを返す
+// targetがないとき: -1を返す
+func searchStringTargetInSortedSlice(array []string, target string) int {
 
     // 範囲start < endを探索する
     arrayLen := len(array)
