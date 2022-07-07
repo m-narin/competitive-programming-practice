@@ -35,6 +35,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	// "sort"
 )
 
 const (
@@ -113,11 +114,8 @@ func readLine() string {
 // 1行の数字列を[]int=スライスで読み込み
 func readIntSlice() []int {
 	slice := make([]int, 0)
-	lines := strings.Split(readLine(), "")
+	lines := strings.Split(readLine(), " ")
 	for _, v := range lines {
-		if v == " "{
-			continue
-		}
 		slice = append(slice, s2i(v))
 	}
 	return slice

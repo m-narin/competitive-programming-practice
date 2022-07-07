@@ -1,9 +1,12 @@
-/* 
-あああ
-
-入力例
+/* ソートについて
 
 出力例
+[1 2 3 4 5]
+[a b c d e]
+[5 4 3 1 2]
+[a d e c b]
+[5 4 3 2 1]
+[e d c b a]
 
 */
 
@@ -16,7 +19,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	// "sort"
+	"sort"
 )
 
 const (
@@ -34,6 +37,36 @@ func main() {
 
 func solve() {
 
+	// intのソート
+	var a[]int = []int {4,1,2,5,3}
+	sort.Ints(a)
+	fmt.Println(a)
+
+	// 文字列のソート
+	b := []string {"b","c","e","d","a"}
+	sort.Strings(b)
+	fmt.Println(b)
+
+	// int要素を逆順に
+	c := []int {2,1,3,4,5}
+	c = reverseIntSlice(c)
+	fmt.Println(c)
+
+	// string要素を逆順に
+	d := []string {"b","c","e","d","a"}
+	d = reverseStringSlice(d)
+	fmt.Println(d)
+
+	// 降順にソート
+	var e[]int = []int {4,1,2,5,3}
+	sort.Ints(e)
+	e = reverseIntSlice(e)
+	fmt.Println(e)
+
+	var f[]string = []string {"b","c","e","d","a"}
+	sort.Strings(f)
+	f = reverseStringSlice(f)
+	fmt.Println(f)
 }
 
 // 1行をstringで読み込み

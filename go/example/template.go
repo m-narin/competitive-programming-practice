@@ -1,3 +1,12 @@
+/* 
+あああ
+
+入力例
+
+出力例
+
+*/
+
 package main
 
 import (
@@ -7,6 +16,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	// "sort"
 )
 
 const (
@@ -46,11 +56,8 @@ func readLine() string {
 // 1行の数字列を[]int=スライスで読み込み
 func readIntSlice() []int {
 	slice := make([]int, 0)
-	lines := strings.Split(readLine(), "")
+	lines := strings.Split(readLine(), " ")
 	for _, v := range lines {
-		if v == " "{
-			continue
-		}
 		slice = append(slice, s2i(v))
 	}
 	return slice
@@ -148,4 +155,20 @@ func s2i(s string) int {
 
 func i2s(i int) string {
 	return strconv.Itoa(i)
+}
+
+func reverseIntSlice(slice []int) []int {
+	new_slice := make([]int,len(slice))
+	for i := len(slice) - 1; i >= 0; i--{
+		new_slice[len(slice)-1-i] = slice[i]
+	}
+	return new_slice
+}
+
+func reverseStringSlice(slice []string) []string {
+	new_slice := make([]string,len(slice))
+	for i := len(slice) - 1; i >= 0; i--{
+		new_slice[len(slice)-1-i] = slice[i]
+	}
+	return new_slice
 }

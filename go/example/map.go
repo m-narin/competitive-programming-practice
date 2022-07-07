@@ -1,9 +1,12 @@
 /* 
-あああ
+最頻値とその出現回数を求める
 
 入力例
+5
+1 4 4 2 3
 
 出力例
+4 2
 
 */
 
@@ -33,6 +36,39 @@ func main() {
 }
 
 func solve() {
+
+	n := readInt()
+	_ = n
+
+	a := readIntSlice()
+	
+	// 連想配列
+	cnt := map[int]int{}
+
+	for _,k := range a{
+
+		// intは0で初期化される
+		cnt[k]++
+
+		// _,ok := cnt[k]
+		// if ok {
+		// 	cnt[k]++
+		// }else{
+		// 	cnt[k] = 1
+		// }
+	}
+
+	max_cnt := 0;  // 出現回数の最大値を保持
+	ans := -1;     // 出現回数が最大になる値を保持
+	for _,k := range a{
+		// 今見ているkの出現回数が、その時点の最大よりも大きければ更新
+		if (max_cnt < cnt[k]) {
+			max_cnt = cnt[k];
+			ans = k;
+		}
+	}
+
+	fmt.Println(ans, max_cnt)
 
 }
 

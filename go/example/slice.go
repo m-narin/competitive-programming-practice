@@ -1,9 +1,12 @@
-/* 
-あああ
-
-入力例
+/* ソートについて
 
 出力例
+[1 2 3 4 5]
+[a b c d e]
+[5 4 3 1 2]
+[a d e c b]
+[5 4 3 2 1]
+[e d c b a]
 
 */
 
@@ -34,6 +37,28 @@ func main() {
 
 func solve() {
 
+	s1 := []int{1,2,3,4,5}
+	s2 := []string{"a","b","c"}
+
+	// rangeで1要素ずつ処理
+	for i,v := range s1 {
+		fmt.Printf("index: %d value: %v \n", i, v)
+	}
+
+	// strings.joinで結合
+	fmt.Println(strings.Join(s2[:],","))
+
+	// 先頭、末尾の要素を削除 O(1)
+	s1 = s1[:len(s1)-1]
+	fmt.Println(s1)
+	s1 = s1[1:]
+	fmt.Println(s1)
+
+	// 先頭、末尾に要素を追加 O(1)
+	s1 = append(s1,5)
+	fmt.Println(s1)
+	s1 = append([]int{1}, s1[0:]...)
+	fmt.Println(s1)
 }
 
 // 1行をstringで読み込み

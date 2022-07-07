@@ -4,6 +4,10 @@
 hello
 1
 1 2 3
+1 2 3
+3
+1
+12
 123
 3
 111
@@ -15,6 +19,7 @@ hello
 1
 1 2 3
 [1 2 3]
+[1 12 123]
 [[1 1 1] [1 1 1] [1 1 1]]
 
 */
@@ -29,6 +34,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	// "sort"
 )
 
 const (
@@ -61,28 +67,40 @@ func solve() {
 	// 横並び空白区切りの数字を各変数に読み込む
 	// <- 1 2 3
 	// -> 1 2 3
-
 	var c,d,e int = readInt3()
 	fmt.Println(c,d,e)
 
 	// 横並び連続の数字をスライスで読み込む
+	// ""で区切りを変える
 	// <- 1 2 3 or 123
 	// -> 1 2 3
 	var f []int = readIntSlice()
 	fmt.Println(f)
 
-	// 固定長の2次元スライスを読み込む
+	// 複数行の数値をスライスで読み込む
+	// <- 3
+	// <- 1
+	// <- 12
+	// <- 123
+	var g int = readInt()
+	h := make([]int, g)
+	for i := 0; i < g; i++{
+		h[i] = readInt()
+	}
+	fmt.Println(h) 
+
+	// 2次元スライスを読み込む
 	// <- 3
 	// <- 111
 	// <- 111
 	// <- 111
 	// ->[[1 1 1] [1 1 1] [1 1 1]]
-	var g int = readInt()
-	h := make([][]int, g)
-	for i := 0; i < g; i++{
-		h[i] = readIntSlice() 
+	var q int = readInt()
+	r := make([][]int, q)
+	for i := 0; i < q; i++{
+		r[i] = readIntSlice() 
 	}
-	fmt.Println(h) 
+	fmt.Println(r) 
 
 }
 
@@ -106,11 +124,8 @@ func readLine() string {
 // 1行の数字列を[]int=スライスで読み込み
 func readIntSlice() []int {
 	slice := make([]int, 0)
-	lines := strings.Split(readLine(), "")
+	lines := strings.Split(readLine(), " ")
 	for _, v := range lines {
-		if v == " "{
-			continue
-		}
 		slice = append(slice, s2i(v))
 	}
 	return slice
@@ -208,4 +223,20 @@ func s2i(s string) int {
 
 func i2s(i int) string {
 	return strconv.Itoa(i)
+}
+
+func reverseIntSlice(slice []int) []int {
+	new_slice := make([]int,len(slice))
+	for i := len(slice) - 1; i >= 0; i--{
+		new_slice[len(slice)-1-i] = slice[i]
+	}
+	return new_slice
+}
+
+func reverseStringSlice(slice []string) []string {
+	new_slice := make([]string,len(slice))
+	for i := len(slice) - 1; i >= 0; i--{
+		new_slice[len(slice)-1-i] = slice[i]
+	}
+	return new_slice
 }
