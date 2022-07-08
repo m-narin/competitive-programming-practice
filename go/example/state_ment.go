@@ -10,6 +10,9 @@
 1
 3
 5
+b
+b
+a
 
 */
 
@@ -42,6 +45,7 @@ func solve() {
 
 	n := 5
 	arr := []int{1,2,3,4,5}
+	str := "abcde"
 
 	// ループ番号
 	for i := 0; i < n; i++{
@@ -69,6 +73,18 @@ func solve() {
 			break
 		}
 	}
+
+	// 文字列のループ
+	// 各文字がrune型になる
+	for _,s := range str{
+		if s == 'b'{
+			fmt.Println(string(s))
+			fmt.Println("b")
+		}
+	}
+
+	// 文字列の添字にアクセス
+	fmt.Println(string(str[0]))
 
 }
 
