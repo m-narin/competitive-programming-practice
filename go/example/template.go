@@ -257,3 +257,76 @@ func searchStringTargetInSortedSlice(array []string, target string) int {
     }
 }
 
+// 最大公約数
+func gcd(v1,v2 int) int {
+	if v1 > v2{
+		v1, v2 = v2, v1
+	}
+
+	for v1 != 0 {
+		v1, v2 = v2%v1, v1
+	}
+
+	return v2
+}
+
+// 最小公倍数
+func lcm(v1, v2 int) int{
+	return v1*v2 / gcd(v1,v2)
+}
+
+// 素因数分解
+func primeFactors(n int) []int{
+	rem := n
+	p := []int{}
+
+	for i:=2; i*i<=n; i++{
+		for rem % i == 0{
+			rem /= i
+			p = append(p,i)
+		}
+	}
+
+	if rem != 1{
+		p = append(p,rem)
+	}
+
+	return p
+}
+
+// 位数と各位のスライスを返す
+func baseNumbers(n int)(int, []int){
+
+	cnt := 0
+
+	slice := []int{}
+
+	for n > 0{
+		slice = append(slice, n % 10)
+		n /= 10
+		cnt++
+	}
+
+	slice = reverseIntSlice(slice)
+
+	return cnt, slice
+}
+
+// 10進数から2進数に変換してスライスを返す
+func base10ToBase2(n int) []int{
+
+	slice := []int{}
+
+	if n == 0{
+		return []int{0}
+	}
+
+	for n > 0{
+		slice = append(slice,n%2)
+		n /= 2
+	}
+
+	slice = reverseIntSlice(slice)
+
+	return slice
+}
