@@ -1,10 +1,11 @@
 /* 
-あああ
+aとbの積が偶数か奇数か
 
 入力例
+3 4
 
 出力例
-
+Even
 */
 
 package main
@@ -33,23 +34,14 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	var a []int = readIntSlice()
-	_,_ = n,a
+    a,b := readInt2()
 
-	ans := 0
-
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
-
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
-		}
-	}
-
-	fmt.Println(ans)
+    c := a * b
+    if c % 2 == 0{
+        fmt.Println("Even")
+    }else{
+        fmt.Println("Odd")
+    }
 }
 
 // 1行をstringで読み込み

@@ -1,9 +1,12 @@
 /* 
-あああ
+1以上N以下の整数の内、
+10進法で各桁の和がA以上B以下であるものの総和
 
 入力例
+20 2 5
 
 出力例
+84
 
 */
 
@@ -33,19 +36,20 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	var a []int = readIntSlice()
-	_,_ = n,a
+	n,a,b := readInt3()
 
 	ans := 0
 
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
+	for i := 1; i <= n; i++{
+		_,digitSlice := baseNumbers(i)
 
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
+		digitSum := 0
+		for _,v := range digitSlice{
+			digitSum += v
+		}
+
+		if a <= digitSum && digitSum <= b{
+			ans += i
 		}
 	}
 

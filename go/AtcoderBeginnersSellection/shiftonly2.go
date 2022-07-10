@@ -1,9 +1,12 @@
 /* 
-あああ
+整数が全て偶数のとき、2で何回割れるか
 
 入力例
+3
+8 12 40
 
 出力例
+2
 
 */
 
@@ -37,18 +40,19 @@ func solve() {
 	var a []int = readIntSlice()
 	_,_ = n,a
 
-	ans := 0
+    ans := INF
 
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
+    for i := 0; i < n; i++{
+        count := 0
+        for a[i] % 2 == 0{
+            a[i] /= 2
+            count++
+        }
 
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
-		}
-	}
-
+        if count < ans {
+            ans = count
+        }
+    }
 	fmt.Println(ans)
 }
 

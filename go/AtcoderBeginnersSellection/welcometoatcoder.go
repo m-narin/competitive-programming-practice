@@ -1,9 +1,13 @@
 /* 
-あああ
+a+b+cの結果と文字列sを並べて表示
 
 入力例
+1
+2 3
+test
 
 出力例
+6 test
 
 */
 
@@ -33,23 +37,11 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	var a []int = readIntSlice()
-	_,_ = n,a
+    a := readInt()
+	b,c := readInt2()
+	s := readLine()
 
-	ans := 0
-
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
-
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
-		}
-	}
-
-	fmt.Println(ans)
+    fmt.Println(a+b+c,s)
 }
 
 // 1行をstringで読み込み

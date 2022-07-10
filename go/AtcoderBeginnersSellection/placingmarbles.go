@@ -1,9 +1,11 @@
 /* 
-あああ
+1が書かれた数
 
 入力例
+101
 
 出力例
+2
 
 */
 
@@ -33,23 +35,21 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	var a []int = readIntSlice()
-	_,_ = n,a
+    str := readLine()
 
-	ans := 0
+    var count int = 0;
 
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
-
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
+    // forで回した場合、rune型
+    for _,s := range str{
+		if s == '1'{
+			count++
 		}
 	}
 
-	fmt.Println(ans)
+    fmt.Println(count)
+
+    // 文字カウント
+    // fmt.Println(strings.Count(str,"1"))
 }
 
 // 1行をstringで読み込み

@@ -1,9 +1,12 @@
 /* 
-あああ
+整数が全て偶数のとき、2で何回割れるか
 
 入力例
+3
+8 12 40
 
 出力例
+2
 
 */
 
@@ -38,15 +41,24 @@ func solve() {
 	_,_ = n,a
 
 	ans := 0
-
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
-
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
+	for{
+		includeOdd := false
+		for _,v := range a{
+			if v % 2 != 0{
+				includeOdd = true
+				break
+			}
 		}
+
+		if includeOdd{
+			break
+		}
+
+		for i := 0; i < n; i++{
+			a[i] = a[i] / 2
+		}
+		ans++
+		
 	}
 
 	fmt.Println(ans)
@@ -346,3 +358,4 @@ func base10ToBase2(n int) []int{
 
 	return slice
 }
+

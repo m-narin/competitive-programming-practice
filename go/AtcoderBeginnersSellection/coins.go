@@ -1,9 +1,15 @@
 /* 
-あああ
+500円玉A枚、100円玉B枚、50円玉C枚。
+合計金額をX円にする選び方は何通りあるか？
 
 入力例
+2
+2
+2
+100
 
 出力例
+2
 
 */
 
@@ -33,19 +39,19 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	var a []int = readIntSlice()
-	_,_ = n,a
+	a := readInt()
+	b := readInt()
+	c := readInt()
+	x := readInt()
 
 	ans := 0
-
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
-
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
+	for i := 0; i <= a; i++{
+		for j := 0; j <= b; j++{
+			for k := 0; k <= c; k++{
+				if 500*i + 100*j + 50*k == x{
+					ans++
+				}
+			}
 		}
 	}
 
