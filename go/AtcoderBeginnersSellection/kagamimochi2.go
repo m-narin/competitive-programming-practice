@@ -1,21 +1,17 @@
 /* 
-出力例
-1
-2
-3
-4
-5
-1
-3
-1
-3
-5
-b
-b
-a
-abc
-cde
+N枚の円形の餅を、直径の大きい順に積み上げていく
+このとき真下の餅より直径は小さくなる
+最大で何段重ねの餅を作れるか
 
+入力例
+4
+10
+8
+8
+6
+
+出力例
+3
 */
 
 package main
@@ -44,54 +40,14 @@ func main() {
 }
 
 func solve() {
+	n := readInt()
+	a := map[int]int{}
 
-	n := 5
-	arr := []int{1,2,3,4,5}
-	str := "abcde"
-
-	// ループ番号
 	for i := 0; i < n; i++{
-		fmt.Println(arr[i])
+		a[readInt()]++
 	}
 
-	// スライスのループ
-	for _,v := range arr{
-
-		if v == 2{
-			continue
-		}else if v == 4{
-			break
-		}
-		fmt.Println(v)
-	}
-
-	// 回数未定のループ
-	// 無限ループに注意
-	for i := 0;;{
-		fmt.Println(arr[i])
-
-		i += 2;
-		if(i > 4){
-			break
-		}
-	}
-
-	// 文字列のループ
-	// 各文字がrune型になる
-	for _,s := range str{
-		if s == 'b'{
-			fmt.Println(string(s))
-			fmt.Println("b")
-		}
-	}
-
-	// 文字列の添字にアクセス
-	fmt.Println(string(str[0]))
-	
-	// 文字列のスライス
-	fmt.Println(str[0:3])
-	fmt.Println(str[2:])
-
+	fmt.Println(len(a))
 }
 
 // 1行をstringで読み込み
@@ -315,3 +271,76 @@ func searchStringTargetInSortedSlice(array []string, target string) int {
     }
 }
 
+// 最大公約数
+func gcd(v1,v2 int) int {
+	if v1 > v2{
+		v1, v2 = v2, v1
+	}
+
+	for v1 != 0 {
+		v1, v2 = v2%v1, v1
+	}
+
+	return v2
+}
+
+// 最小公倍数
+func lcm(v1, v2 int) int{
+	return v1*v2 / gcd(v1,v2)
+}
+
+// 素因数分解
+func primeFactors(n int) []int{
+	rem := n
+	p := []int{}
+
+	for i:=2; i*i<=n; i++{
+		for rem % i == 0{
+			rem /= i
+			p = append(p,i)
+		}
+	}
+
+	if rem != 1{
+		p = append(p,rem)
+	}
+
+	return p
+}
+
+// 位数と各位のスライスを返す
+func baseNumbers(n int)(int, []int){
+
+	cnt := 0
+
+	slice := []int{}
+
+	for n > 0{
+		slice = append(slice, n % 10)
+		n /= 10
+		cnt++
+	}
+
+	slice = reverseIntSlice(slice)
+
+	return cnt, slice
+}
+
+// 10進数から2進数に変換してスライスを返す
+func base10ToBase2(n int) []int{
+
+	slice := []int{}
+
+	if n == 0{
+		return []int{0}
+	}
+
+	for n > 0{
+		slice = append(slice,n%2)
+		n /= 2
+	}
+
+	slice = reverseIntSlice(slice)
+
+	return slice
+}

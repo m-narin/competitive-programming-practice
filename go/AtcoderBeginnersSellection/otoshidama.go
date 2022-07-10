@@ -1,17 +1,13 @@
 /* 
-N枚の円形の餅を、直径の大きい順に積み上げていく
-このとき真下の餅より直径は小さくなる
-最大で何段重ねの餅を作れるか
+10000円札、5000円札、1000円札N枚でY円はあり得るか？
+あり得る場合それぞれの枚数、あり得ない場合、-1 -1 -1を出力
 
 入力例
-4
-10
-8
-8
-6
+9 45000
 
 出力例
-3
+4 0 5
+
 */
 
 package main
@@ -40,16 +36,18 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	a := []int{}
+	n,y := readInt2()
+	
+    for i := 0; i <= n; i++{
+        for j := 0; i+j <= n; j++{
+            if 10000*i + 5000*j + 1000*(n-i-j) == y{
+                fmt.Println(i,j,n-i-j)
+                return
+            }
+        } 
 
-	for i := 0; i < n; i++{
-		a = append(a,readInt())
-	}
-
-	a = uniqueIntSlice(a)
-
-	fmt.Println(len(a))
+    }
+	fmt.Println(-1,-1,-1)
 }
 
 // 1行をstringで読み込み

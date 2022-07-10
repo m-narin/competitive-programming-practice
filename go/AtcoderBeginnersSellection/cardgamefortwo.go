@@ -1,17 +1,14 @@
 /* 
-N枚の円形の餅を、直径の大きい順に積み上げていく
-このとき真下の餅より直径は小さくなる
-最大で何段重ねの餅を作れるか
+Alice, Bobは、数が書かれたN枚のカードを交互に取っていく
+大きい数字から順に取っていったときのAliceの得点-Bobの得点を求める
 
 入力例
-4
-10
-8
-8
-6
+3
+2 7 4
 
 出力例
-3
+5
+
 */
 
 package main
@@ -23,7 +20,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	// "sort"
+	"sort"
 )
 
 const (
@@ -41,15 +38,25 @@ func main() {
 
 func solve() {
 	n := readInt()
-	a := []int{}
+	var a []int = readIntSlice()
+	_,_ = n,a
+
+    // 降順に並べ替え
+    sort.Ints(a)
+    a = reverseIntSlice(a)
+
+	aliceScore := 0
+    bobScore := 0
 
 	for i := 0; i < n; i++{
-		a = append(a,readInt())
+		if i % 2 == 0{
+            aliceScore += a[i]
+        }else{
+            bobScore += a[i]
+        }
 	}
 
-	a = uniqueIntSlice(a)
-
-	fmt.Println(len(a))
+	fmt.Println(aliceScore - bobScore)
 }
 
 // 1行をstringで読み込み

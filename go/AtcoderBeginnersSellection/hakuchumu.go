@@ -1,17 +1,14 @@
 /* 
-N枚の円形の餅を、直径の大きい順に積み上げていく
-このとき真下の餅より直径は小さくなる
-最大で何段重ねの餅を作れるか
+以下の操作を繰り返し、
+・dream dreamer erase eraserのいずれかを追加する
+Sと同じ文字列を作れるか
 
 入力例
-4
-10
-8
-8
-6
+erasedream
 
 出力例
-3
+YES
+
 */
 
 package main
@@ -40,16 +37,32 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	a := []int{}
+	s := readLine()
+    s = reverseString(s)
 
-	for i := 0; i < n; i++{
-		a = append(a,readInt())
+    d := []string{"dream","dreamer","erase","eraser"}
+
+	for i := 0; i < len(d); i++{
+		d[i] = reverseString(d[i])
 	}
 
-	a = uniqueIntSlice(a)
+    for i := 0; i < len(s);{
+        can_devide := false
+        for _,v := range d{
+            if i+len(v) <= len(s) && s[i:i+len(v)] == v{
+                can_devide = true
+                i += len(v)
+                break
+            }
+        }
 
-	fmt.Println(len(a))
+        if !can_devide{
+            fmt.Println("NO")
+            return
+        }
+    }
+
+    fmt.Println("YES")
 }
 
 // 1行をstringで読み込み
@@ -187,6 +200,14 @@ func reverseStringSlice(slice []string) []string {
 		new_slice[len(slice)-1-i] = slice[i]
 	}
 	return new_slice
+}
+
+func reverseString(s string) string {
+	new_s := ""
+	for i := len(s) - 1; i >= 0; i--{
+		new_s += string(s[i])
+	}
+	return new_s
 }
 
 func uniqueIntSlice(target []int) (unique[]int){

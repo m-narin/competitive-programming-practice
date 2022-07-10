@@ -1,18 +1,20 @@
 /* 
-N枚の円形の餅を、直径の大きい順に積み上げていく
-このとき真下の餅より直径は小さくなる
-最大で何段重ねの餅を作れるか
+(0,0)から時刻tに(xt,yt)に移動する計画は実現可能か
 
 入力例
-4
-10
-8
-8
-6
+2
+3 1 2
+6 1 1
 
 出力例
-3
+YES
+
 */
+
+// 方針
+// 距離と偶奇(パリティ)の二つの条件がある
+// 1. dist = abs(xの変化)+abs(yの変化) <= dt
+// 2. dtと(xi+yi)の偶奇が一致
 
 package main
 
@@ -41,15 +43,32 @@ func main() {
 
 func solve() {
 	n := readInt()
-	a := []int{}
+	t := []int{0}
+	x := []int{0}
+	y := []int{0}
 
 	for i := 0; i < n; i++{
-		a = append(a,readInt())
+		tv, xv, yv := readInt3()
+		t = append(t,tv)
+		x = append(x,xv)
+		y = append(y,yv)
 	}
 
-	a = uniqueIntSlice(a)
+	for i := 0; i < n; i++{
+		dt := t[i+1] - t[i]
+		dist := abs(x[i+1]-x[i]) + abs(y[i+1]-y[i]) 
+		if dist > dt {
+			fmt.Println("No")
+			return
+		}
 
-	fmt.Println(len(a))
+		if dist % 2 != dt % 2{
+			fmt.Println("No")
+			return
+		}
+	}
+
+	fmt.Println("Yes")
 }
 
 // 1行をstringで読み込み
@@ -187,6 +206,14 @@ func reverseStringSlice(slice []string) []string {
 		new_slice[len(slice)-1-i] = slice[i]
 	}
 	return new_slice
+}
+
+func reverseString(s string) string {
+	new_s := ""
+	for i := len(s) - 1; i >= 0; i--{
+		new_s += string(s[i])
+	}
+	return new_s
 }
 
 func uniqueIntSlice(target []int) (unique[]int){

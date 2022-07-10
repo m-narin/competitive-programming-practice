@@ -43,12 +43,6 @@ func solve() {
 		_ = a[i]
 	}
 
-	for i,v := range a{
-		if v == 1{
-			_,_ = i,v
-		}
-	}
-
 	fmt.Println(ans)
 }
 
@@ -187,6 +181,14 @@ func reverseStringSlice(slice []string) []string {
 		new_slice[len(slice)-1-i] = slice[i]
 	}
 	return new_slice
+}
+
+func reverseString(s string) string {
+	new_s := ""
+	for i := len(s) - 1; i >= 0; i--{
+		new_s += string(s[i])
+	}
+	return new_s
 }
 
 func uniqueIntSlice(target []int) (unique[]int){
