@@ -1,3 +1,29 @@
+/*
+n個の品物があり、i番目の品物のそれぞれの重さと価値が与えられる。
+総和がwを越えないように選んだ時の、価値の総和の最大値を求めよ。
+
+入力例
+6 9
+2 3
+1 2
+3 6
+2 1
+1 3
+5 85 
+
+出力例
+94
+
+*/
+
+// DP問題
+// 問題を部分問題の総和として考える
+// dp[i]が決まっているときに、dp[i+1]を考える
+// つまり、a[i]を選ぶか選ばないか
+// 参考
+// https://qiita.com/drken/items/a5e6fe22863b7992efdb
+// https://o-treetree.hatenablog.com/entry/DPL1B
+
 /* 
 あああ
 
@@ -33,19 +59,37 @@ func main() {
 }
 
 func solve() {
-	n := readInt()
-	var a = make([]int, n)
+	n,W := readInt2()
+    value := make([]int, n)
+    weight := make([]int, n)
+
+    // dpテーブル
+    // dp[i+1][w] := i番目までの品物の中から重さがwを越えないように選んだ時の、価値の総和の最大値
+    var dp[110][1100]int
+
 	for i := 0; i < n; i++{
-		a[i] = readInt()
+        a,b := readInt2()
+        weight[i] = a
+		value[i] = b
 	}
+    
+    // DP初期条件: dp[0][w] = 0
+    for w := 0; w <= W; w++{
+        dp[0][w] = 0
+    }
 
-	ans := 0
+    //DP ループ
+    for i := 0; i < n; i++{
+        for w := 0; w <= W; w++{
+            if w >= weight[i]{
+                dp[i+1][w] = max(dp[i][w-weight[i]] + value[i], dp[i][w])
+            }else{
+                dp[i+1][w] = dp[i][w]
+            }
+        }
+    }
 
-	for i := 0; i < n; i++{
-		_ = a[i]
-	}
-
-	fmt.Println(ans)
+    fmt.Println(dp[n][W])
 }
 
 // 1行をstringで読み込み
