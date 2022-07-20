@@ -26,9 +26,12 @@ const (
 )
 
 var rdr *bufio.Reader
+var writer = bufio.NewWriter(os.Stdout)
 
 func main() {
 	rdr = bufio.NewReaderSize(os.Stdin, BUFSIZE)
+	defer writer.Flush()
+
 	solve()
 }
 

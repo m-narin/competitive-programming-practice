@@ -21,10 +21,13 @@ hello
 [1 2 3]
 [1 12 123]
 [[1 1 1] [1 1 1] [1 1 1]]
+1 2 3
+4 5 
 
 */
 
 // Template: https://github.com/maitaken/atcoder-template
+
 package main
 
 import (
@@ -44,9 +47,12 @@ const (
 )
 
 var rdr *bufio.Reader
+var writer = bufio.NewWriter(os.Stdout)
 
 func main() {
 	rdr = bufio.NewReaderSize(os.Stdin, BUFSIZE)
+	defer writer.Flush()
+
 	solve()
 }
 
@@ -102,6 +108,9 @@ func solve() {
 	}
 	fmt.Println(r) 
 
+// 大量のデータを出力(10^6回くらい)する際は、bufio.writerを使う
+	data := []string{"1","2","3"}
+	writer.WriteString(strings.Join(data," ") + "\n" + "4 " + "5 ")
 }
 
 // 1行をstringで読み込み
